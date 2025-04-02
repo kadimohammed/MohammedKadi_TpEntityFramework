@@ -1,0 +1,33 @@
+# Répertoire de build et fichiers compilés
+bin/
+obj/
+
+# Fichiers utilisateur et paramètres locaux de Visual Studio
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Fichiers de configuration spécifiques au projet
+*.csproj.user
+*.csproj.filters
+
+# NuGet et dépendances
+packages/
+*.nupkg
+project.lock.json
+project.assets.json
+
+# Logs et fichiers temporaires
+*.log
+logs/
+
+# Fichiers générés par l’IDE JetBrains Rider (si applicable)
+.idea/
+*.iml
+
+# Autres fichiers à exclure (par exemple, fichiers de secrets ou de configuration de développement)
+secrets.json
+appsettings.Development.json
