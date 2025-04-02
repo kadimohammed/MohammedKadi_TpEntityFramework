@@ -4,15 +4,15 @@ namespace MohammedKadi_TpEntityFramework.Entities
 {
     public class Class
     {
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
         [Required]
         [MinLength(3)]
         [MaxLength(100)]
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
         [Range(1, 15)]
-        public int Level { get; set; }
-        public int TeacherId { get; set; }
-        public Teacher Teacher { get; set; } = null!;
+        public virtual int Level { get; set; }
+        public virtual int TeacherId { get; set; }
+        public virtual Teacher Teacher { get; set; } = null!;
     }
 
 

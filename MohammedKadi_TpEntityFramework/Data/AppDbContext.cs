@@ -24,7 +24,9 @@ namespace MohammedKadi_TpEntityFramework.Data
 
             // recperation de la connection string
             var connectionString = config.GetConnectionString("DefaultConnection");
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder
+                .UseLazyLoadingProxies() // utilisation de lazy loading
+                .UseSqlServer(connectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

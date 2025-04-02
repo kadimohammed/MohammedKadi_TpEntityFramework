@@ -5,12 +5,12 @@ namespace MohammedKadi_TpEntityFramework.Entities
 {
     public class Person
     {
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
         [MinLength(3)]
         [MaxLength(100)]
-        public string FirstName { get; set; }
+        public virtual string FirstName { get; set; }
         [MinLength(3)]
         [MaxLength(100)]
-        public string LastName { get; set; }
+        public virtual string LastName { get; set; }
     }
 }

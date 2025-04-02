@@ -9,35 +9,33 @@ var Services = new ServiceCollection();
 
 // IAjout des services
 Services.AddScoped<AppDbContext>();
-Services.AddScoped<IRepository<Student>, Repository<Student>>();
-Services.AddScoped<IUnitOfWork<Student>, UnitOfWork<Student>>();
+Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 
 // Construction du provider
 var serviceProvider = Services.BuildServiceProvider();
 
 // Resolution du service
-IUnitOfWork<Student> unitOfWork = serviceProvider.GetRequiredService<IUnitOfWork<Student>>();
-
+IUnitOfWork unitOfWork = serviceProvider.GetRequiredService<IUnitOfWork>();
 
 
 // Add new student /////////////////////////////////////
 var newStudent = new Student { Id = 7, FirstName = "Lkhakhi", LastName = "Gravenberg", StudentNumber = 12523688 };
-unitOfWork.Repository.Add(newStudent);
+unitOfWork.StudentRepository.Add(newStudent);
 await unitOfWork.SaveChangesAsync();
 Console.WriteLine("Bien Ajouter");
 
 
 
 // Get all students
-var students = unitOfWork.Repository.GetAll();
+var students = unitOfWork.StudentRepository.GetAll();
 PrintStudents(students);
 
 
 
 
 // Get by Id /////////////////////////////////////
-var st = unitOfWork.Repository.GetById(7);
+var st = unitOfWork.StudentRepository.GetById(7);
 
 
 
@@ -46,18 +44,18 @@ st.FirstName = "newName";
 st.LastName = "Lao";
 await unitOfWork.SaveChangesAsync(); // Save changes
 
-var updatedStudent = unitOfWork.Repository.GetById(7);
+var updatedStudent = unitOfWork.StudentRepository.GetById(7);
 Console.WriteLine($"Id = {updatedStudent.Id}, FirstName = {updatedStudent.FirstName}, LastName = {updatedStudent.LastName}, Number = {updatedStudent.StudentNumber}");
 
 
 
 
 // Delete /////////////////////////////////////
-unitOfWork.Repository.Delete(updatedStudent);
+unitOfWork.StudentRepository.Delete(updatedStudent);
 await unitOfWork.SaveChangesAsync(); // Save changes after deletion
 
 
-students = unitOfWork.Repository.GetAll();
+students = unitOfWork.StudentRepository.GetAll();
 PrintStudents(students);
   
 

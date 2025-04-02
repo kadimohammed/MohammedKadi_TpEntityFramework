@@ -4,13 +4,13 @@ namespace MohammedKadi_TpEntityFramework.Entities
 {
     public class Enrollment
     {
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
         [Required]
-        public DateTime EnrollmentDate { get; set; }
-        public Student Student { get; set; } = null!;
-        public Class Class { get; set; } = null!;
-        public int StudentId { get; set; }
-        public int ClassId { get; set; }
+        public virtual DateTime EnrollmentDate { get; set; }
+        public virtual Student Student { get; set; } = null!;
+        public virtual Class Class { get; set; } = null!;
+        public virtual int StudentId { get; set; }
+        public virtual int ClassId { get; set; }
     }
 
 }
