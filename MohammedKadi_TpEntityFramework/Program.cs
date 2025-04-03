@@ -16,6 +16,7 @@ Services.AddScoped<IUnitOfWork, UnitOfWork>();
 var serviceProvider = Services.BuildServiceProvider();
 
 // Resolution du service
+AppDbContext context = serviceProvider.GetRequiredService<AppDbContext>();
 IUnitOfWork unitOfWork = serviceProvider.GetRequiredService<IUnitOfWork>();
 
 
@@ -57,8 +58,27 @@ await unitOfWork.SaveChangesAsync(); // Save changes after deletion
 
 students = unitOfWork.StudentRepository.GetAll();
 PrintStudents(students);
-  
 
+
+
+// test View ///////////////////////////////////////
+
+// script Sql View
+
+//create VIEW MyView_Students AS  
+//SELECT 
+//    Id,
+//    FirstName,
+//    LastName,
+//    StudentNumber  
+//FROM Students s;
+
+var studentsParView = context.StudentsView.ToList();
+Console.WriteLine("get student utilisant View ------------");
+foreach (var student in studentsParView)
+{
+    Console.WriteLine($"{student.FirstName} {student.LastName} - {student.StudentNumber}");
+}
 
 
 // fonction pour afficher la list des etudiants

@@ -1,19 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using MohammedKadi_TpEntityFramework.Entities;
+using MohammedKadi_TpEntityFramework.Views;
 
 namespace MohammedKadi_TpEntityFramework.Data
 {
     public class AppDbContext : DbContext {
-
-        public DbSet<Person> Persons { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Class> Classes { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Enrollment> Enrollments { get; set; }
 
-
+        // view
+        public DbSet<StudentView> StudentsView { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
@@ -68,6 +68,13 @@ namespace MohammedKadi_TpEntityFramework.Data
                 .WithMany()
                 .HasForeignKey(e => e.StudentId)
                 .OnDelete(DeleteBehavior.NoAction);
+
+
+            // View
+            modelBuilder
+            .Entity<StudentView>()
+            .ToView("MyView_Students")
+            .HasNoKey();
 
 
 
